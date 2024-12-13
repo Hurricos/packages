@@ -9,8 +9,8 @@ PKG_MAINTAINER:=Martin Kennedy <hurricos@gmail.com>
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/Hurricos/realtek-poe.git
-PKG_SOURCE_VERSION:=ea32075ae41874043eeed14156755a4c0f114582
-PKG_MIRROR_HASH:=5883af61645216eaf90e86a372df055ef352c4445d4f5010da629d98771da0ec
+PKG_SOURCE_VERSION:=2df137ee45715533c1aae81ccc41e5eb8fb763f6
+PKG_MIRROR_HASH:=24b00f216f4f5fcce6de49fd4088549205d0e33440d276a745348f7c31206407
 CMAKE_SOURCE_SUBDIR:=src
 
 include $(INCLUDE_DIR)/package.mk
@@ -27,9 +27,11 @@ define Package/realtek-poe/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/realtek-poe $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/etc/init.d/poe $(1)/etc/init.d/
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/files/etc/config/poe $(1)/etc/config/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/etc/uci-defaults/30-poe $(1)/etc/uci-defaults/30-poe
 endef
 
 $(eval $(call BuildPackage,realtek-poe))
